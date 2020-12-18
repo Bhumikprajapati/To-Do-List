@@ -4,7 +4,7 @@ class Calcresult extends Component{
         let {result}=this.props;
         return(
             <div className="result">
-            <p>{result}</p>
+            {result}
         </div>
          )
     }

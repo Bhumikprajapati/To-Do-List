@@ -3,20 +3,18 @@ import './App.css';
 import CalcButtons from './components/CalcButtons';
 import Calcresult from './components/Calcresult';
 class App extends Component {
+
   state={
     result:''
   }
  Clicked=(button)=>{
-    console.log(button)
-    
     if(button === "="){
       this.calculate()
   }
-
-  else if(button === "C"){
+    else if(button === "C"){
       this.reset()
   }
-  else if(button === "CE"){
+   else if(button === "CE"){
       this.backspace()
   }
 
@@ -30,20 +28,19 @@ class App extends Component {
     let Result="";
     if(this.state.result.includes('--')){
       Result = this.state.result.replace('--','+')
-  }
- else {
+   }
+  else {
       Result = this.state.result
-  }
+    }
   try {
       this.setState({
       
-        result: eval(Result) 
+        result:(eval(Result) || "" ) + ""
       })
   } catch (error) {
       this.setState({
-          result: "error"+error
+          result: `error ${error}`
       })
-
   }
   }
   reset = () => {
@@ -60,10 +57,10 @@ backspace = () => {
 
   
   render(){
-
+    const {result}=this.state;
   return (
     <div className="App">
-   <Calcresult result={this.state.result}/>
+   <Calcresult result={result}/>
    <CalcButtons Clicked={this.Clicked}/>
     </div>
   );
