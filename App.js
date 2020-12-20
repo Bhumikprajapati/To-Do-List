@@ -20,18 +20,22 @@ class App extends Component {
       let alltasks=[...this.state.alltasks]
       if(this.state.inputtoggle){
         let name=alltasks[index]
-        console.log(name)//taking value given
         name=task
-        console.log(name)//updating value
-        alltasks[index]=name//placing in main array
+        alltasks[index]=name
         this.setState({alltasks:alltasks,inputtoggle:false})
       }
      else{
-      let len=alltasks.length;
-      alltasks[len]=task
-      console.log(alltasks);
-      this.setState({alltasks:alltasks})
-    }
+       if(task==="")
+       {
+         alert("Please enter some Task to do")
+       }
+       else{
+        let len=alltasks.length;
+        alltasks[len]=task
+        this.setState({alltasks:alltasks})
+      }
+       }
+     
   }
  editTaskHandler=(index)=>{
     let alltasks=[...this.state.alltasks]
@@ -52,7 +56,8 @@ deleteTaskHandler=(index)=>{
 
   render()
    {
-   let tasks=this.state.alltasks.map((data,index)=>{
+    const {alltasks,task}=this.state;
+   let tasks=alltasks.map((data,index)=>{
         return <TodoList
         editTask={this.editTaskHandler.bind(this,index)}
         deleteTask={this.deleteTaskHandler.bind(this,index)}
@@ -63,11 +68,15 @@ deleteTaskHandler=(index)=>{
   
   return (
     <div className="App">
-     
+    
        <h1 className="title">To Do List</h1>
-       <input type="text" value={this.state.task} onChange={this.changeHandler} />
+       <div className="inputs">
+       <input type="text" value={task} onChange={this.changeHandler} />
        <button type="button" onClick={this.addTaskhandler }>Add Task</button>
-      {tasks}
+       </div>
+     {tasks}
+     
+      
     </div>
   );
 }

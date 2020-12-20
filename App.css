@@ -5,4 +5,10 @@
   font-size: 35px;
   font-family: monospace;
   font-weight: bolder;
+ background-color: lightgreen;
+ 
+}
+.inputs{
+margin: 10px;
+
 }
