@@ -17,6 +17,22 @@ class App extends Component {
    else if(button === "CE"){
       this.backspace()
   }
+  else if(button === "square"){
+    let s=this.state.result;
+    let Result=Math.pow(s,2)
+    this.setState({result:Result})
+}
+
+else if(button === "cube"){
+  let c=this.state.result;
+    let Result=Math.pow(c,3)
+    this.setState({result:Result})
+}
+else if(button === "sqrt"){
+  let s=this.state.result;
+    let Result=Math.sqrt(s)
+    this.setState({result:Result})
+}
 
   else {
       this.setState({
@@ -26,15 +42,12 @@ class App extends Component {
   }
   calculate=()=>{
     let Result="";
-    if(this.state.result.includes('--')){
-      Result = this.state.result.replace('--','+')
-   }
-  else {
+   
       Result = this.state.result
-    }
+    
   try {
       this.setState({
-      
+      // eslint-disable-next-line
         result:(eval(Result) || "" ) + ""
       })
   } catch (error) {
